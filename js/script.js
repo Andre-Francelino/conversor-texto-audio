@@ -30,4 +30,18 @@ voices.addEventListener('change', () => {
     selectedVoice = parseInt(voices.value);
 });
 
+// função para saber se a aplicação está falando o texto escrito
+// e desabilitar o acesso a lista de vozes e acionamento do botão
+function updateStatus() {
+    if(window.speechSynthesis.speaking) {
+        voices.setAttribute('disabled', 'disabled');
+        button.setAttribute('disabled', 'disabled');
+    } else {
+        voices.removeAttribute('disabled');
+        button.removeAttribute('disabled');
+    }
+}
+
+setInterval(updateStatus, 100);
+
 
